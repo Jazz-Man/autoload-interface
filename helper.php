@@ -2,13 +2,16 @@
 
 use JazzMan\AutoloadInterface\AutoloadInterface;
 
-if (!function_exists('app_autoload_classes')) {
+if (! \function_exists('app_autoload_classes')) {
     /**
      * @param array $classes
      */
     function app_autoload_classes(array $classes)
     {
         foreach ($classes as $class) {
+            // Help opcache.preload discover always-needed symbols
+            \class_exists($class);
+
             try {
                 $_class = new \ReflectionClass($class);
                 if ($_class->implementsInterface(AutoloadInterface::class)) {
@@ -17,7 +20,7 @@ if (!function_exists('app_autoload_classes')) {
                     $instance->load();
                 }
             } catch (\ReflectionException $e) {
-                wp_die($e, 'ReflectionException');
+                error_log($e);
             }
         }
     }
