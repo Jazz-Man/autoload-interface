@@ -1,5 +1,6 @@
 {
     "name": "jazzman/autoload-interface",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vasyl Sokolyk",
