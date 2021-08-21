@@ -7,5 +7,8 @@ namespace JazzMan\AutoloadInterface;
  */
 interface AutoloadInterface
 {
+	/**
+	 * @return void
+	 */
     public function load();
 }
